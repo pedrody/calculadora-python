@@ -1,4 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout
+from PySide6.QtGui import QIcon
+from variables import WINDOW_ICON_PATH
 
 
 class MainWindow(QMainWindow):
@@ -7,6 +9,10 @@ class MainWindow(QMainWindow):
 
         # Título da janela
         self.setWindowTitle('Calculadora')
+
+        # Define o ícone
+        icon = QIcon(str(WINDOW_ICON_PATH))
+        self.setWindowIcon(icon)
 
         # Configurando o layout básico
         self.cw = QWidget()
@@ -18,3 +24,6 @@ class MainWindow(QMainWindow):
         # última coisa a ser feita
         self.adjustSize()
         self.setFixedSize(self.width(), self.height())
+
+    def addWidgetToVLayout(self, widget: QWidget):
+        self.v_layout.addWidget(widget)
