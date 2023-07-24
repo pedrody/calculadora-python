@@ -4,10 +4,12 @@ from main_window import MainWindow
 from PySide6.QtWidgets import QApplication
 from display import Display
 from info import Info
+from styles import setupTheme
 
 if __name__ == '__main__':
     # Cria a aplicação
     app = QApplication(sys.argv)
+    setupTheme()
     window = MainWindow()
 
     # Info
