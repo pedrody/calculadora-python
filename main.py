@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QApplication
 from display import Display
 from info import Info
 from styles import setupTheme
+from buttons import Button
 
 if __name__ == '__main__':
     # Cria a aplicação
@@ -20,6 +21,13 @@ if __name__ == '__main__':
     display = Display()
     display.setPlaceholderText('0')
     window.addToVLayout(display)
+
+    # Botão
+    button = Button('Texto do botão')
+    window.addToVLayout(button)
+
+    button2 = Button('Texto do botão')
+    window.addToVLayout(button2)
 
     # Executa tudo
     window.adjustFixedSize()
