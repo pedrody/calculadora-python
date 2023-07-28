@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QApplication
 from display import Display
 from info import Info
 from styles import setupTheme
-from buttons import Button, ButtonsGrid
+from buttons import ButtonsGrid
 
 if __name__ == '__main__':
     # Cria a aplicação
