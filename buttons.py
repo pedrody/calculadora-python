@@ -129,13 +129,13 @@ class ButtonsGrid(QGridLayout):
             self._left = float(displayText)
 
         self._op = buttonText
-        self.equation = f'{self._left} {self._op} ??'
+        self.equation = f'{self._left} {self._op} ?'
 
     def _eq(self):
         displayText = self.display.text()
 
         if not isValidNumber(displayText):
-            print('Sem nada para a direita.')
+            self._showError('type the SECOND number')
             return
 
         self._right = float(displayText)
@@ -148,9 +148,9 @@ class ButtonsGrid(QGridLayout):
             else:
                 result = eval(self.equation)
         except ZeroDivisionError:
-            print('Cannot divide by zero')
+            self._showError('Cannot divide by zero')
         except OverflowError:
-            print('Overflow Error: very large number')
+            self._showError('Overflow Error: Very large number')
 
         self.display.clear()
         self.info.setText(f'{self.equation} = {result}')
@@ -160,8 +160,17 @@ class ButtonsGrid(QGridLayout):
         if result == 'error':
             self._left = None
 
-    def _showError(self, text):
+    def _makeDialog(self, text):
         msgBox = self.window.makeMsgBox()
         msgBox.setText(text)
+        return msgBox
+
+    def _showError(self, text):
+        msgBox = self._makeDialog(text)
         msgBox.setIcon(msgBox.Icon.Critical)
+        msgBox.exec()
+
+    def _showInfo(self, text):
+        msgBox = self._makeDialog(text)
+        msgBox.setIcon(msgBox.Icon.Information)
         msgBox.exec()
